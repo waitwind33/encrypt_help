@@ -1,0 +1,14 @@
+import random
+import string
+
+
+def generate_random_string(length):
+    random_string = "".join(
+        random.choices(string.ascii_lowercase + string.digits, k=length)
+    )
+    return random_string
+
+
+# 调用示例
+random_string = generate_random_string(8)  # 生成长度为10的随机字符串
+print(random_string)
