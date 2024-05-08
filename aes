@@ -1,0 +1,20 @@
+import base64
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad
+
+
+def aes_cbc_encode(message, key, iv):
+    iv = iv.encode("utf-8")
+    key = key.encode("utf-8")
+    message = message.encode("utf-8")
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    ciphered_text = cipher.encrypt(pad(message, AES.block_size))
+    return base64.b64encode(ciphered_text).decode("utf-8")
+
+
+if __name__ == "__main__":
+    message = "3arzmkch-wky74yxp1715155237298"
+    key = "E08247708934F42E"
+    iv = "0A234C4C639E015D"
+    encoded_message = aes_cbc_encode(message, key, iv)
+    print(encoded_message)
